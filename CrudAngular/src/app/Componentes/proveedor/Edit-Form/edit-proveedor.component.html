@@ -1,0 +1,87 @@
+
+<div class="container-fluid page-body-wrapper">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Formulario</h4>
+              <p class="card-description">
+                Formulario para editar un nuevo Proveedor
+              </p>
+              <form class="forms-sample" [formGroup]=" updateForm" (ngSubmit)="guardarEditP()" >
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Nombre</label>
+                  <input formControlName="nombre" id="nombre" type="text" class="form-control" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">RNC</label>
+                  <input formControlName="rnc" id="rnc" type="tex" class="form-control"  placeholder="RNC">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Telefono</label>
+                  <input formControlName="tel" id="tel" type="text" class="form-control"  placeholder="Telefono">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputConfirmPassword1">Direccion</label>
+                  <input formControlName="direccion" id="direccion" type="text" class="form-control"  placeholder="Direccion">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputConfirmPassword1">Correo</label>
+                  <input formControlName="correo" id="correo" type="text"  class="form-control"  placeholder="Correo">
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <label class="form-check-label" for="gridCheck">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button   type="submit"  class="btn btn-outline-success bi bi-check2">Guardar</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="container" >
+                <h1>TABLA PROVEEDORES</h1>
+                <div class="row g-3">
+                  <div class="col ">
+                    <input class="form-control me-2 d-flex"  type="text"  placeholder="Buscar.."  [(ngModel)]="filterProveedor" name="filterProveedor"  role="search"  placeholder="Buscar" aria-label="Search">
+                  </div>
+                </div>
+                    <table class="table">
+                      <thead>
+                        <tr >
+                          <th scope="col">Nombre</th>
+                          <th scope="col">RNC</th>
+                          <th scope="col">Telefono</th>
+                          <th scope="col">Direccion</th>
+                          <th scope="col">Correo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let proveedor of listProveedor | filterProveedor: filterProveedor; let i = index">
+                          <td>{{proveedor.nombre}}</td>
+                          <th>{{proveedor.rnc}}</th>
+                          <td>{{proveedor.tel}}</td>
+                          <td >{{proveedor.direccion}}</td>
+                          <td>{{proveedor.correo}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,204 @@
+
+<h2 class="text-center">Nueva Solicitud</h2>
+<div class="container-fluid page-body-wrapper">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+        Vista previa
+      </button>
+
+    <button type="button" class="  btn btn-outline-primary  bi bi-printer " [useExistingCss]="true" printSectionId="print-section" ngxPrint >Imprimir</button>
+  </div>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Formulario</h4>
+              <p class="card-description">
+                Formulario para registrar un nuevo Solicitud
+              </p>
+              <form  class="forms-sample" [formGroup]="solicitudForm" #f="ngForm" >
+                <select  formControlName="id_proveedor" class="form-select" aria-label="Default select example">
+                  <option value="">--Select Proveedor--</option>
+                <option *ngFor="let proveedor of ListProveedor" value="{{proveedor.proveedor_id}}" id="id_proveedor" >{{proveedor.nombre}}</option>
+                </select>
+                <select  formControlName="id_estado"  type="text" placeholder="Estado" class="form-select" aria-label="Default select example">
+                  <option value="">-- Select Estado--</option>
+                <option *ngFor="let estado of ListEstado" value="{{estado.estado_id}}" id="id_estado">{{estado.status}}</option>
+                </select>
+                <div class="row">
+                  <label class="text-center">Datos del Solicitante</label>
+                  <div class="col">
+                    <input formControlName="solicitante" id="solicitante" type="text" class="form-control"  placeholder="solicitante" aria-label="solicitante">
+                  </div>
+                  <div class="col">
+                    <input formControlName="cedula" id="cedula" type="text" class="form-control" placeholder="Cedula" aria-label="cedula">
+                  </div>
+                  <div class="col">
+                    <input  formControlName="tel" id="tel" type="text" class="form-control" placeholder="Telefono" aria-label="tel">
+                  </div>
+                  <div class="col">
+                    <input formControlName="dire" id="dire" type="text" class="form-control" placeholder="Direccion" aria-label="dire">
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="text-center">Datos de la solicitud</label>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2">Asunto</label>
+                    <div class="col-sm-10">
+                      <input  formControlName="asunto" id="asunto" type="text" class=" date-start form-control"  placeholder="Asunto">
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Monto Solicitado</label>
+                    <div class="col-sm-8">
+                      <input  formControlName="montoS" id="montoS" type="text" class="date-start ml-5 form-control" placeholder="Monto Solicitado">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Monto Aprobado</label>
+                    <div class="col-sm-8">
+                      <input  formControlName="montoA" id="montoA" type="text" class="date-end ml-5 form-control  col-sm-8" placeholder="Monto Aprovado">
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" (click)="guardarS()"  class="btn btn-outline-success bi bi-check2 " >Guardar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card collapse collapse-horizontal" id="collapseWidthExample">
+            <div class="card-body">
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <ng-container *ngIf="f.value.id_estado ==1 && f.value.montoA<=0; else second">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                          <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </ng-container>
+                        <ng-template #second>
+                            <ng-container *ngIf="f.value.id_estado ==2 && f.value.montoA > 0 ; else third">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #third>
+                          <ng-container *ngIf="f.value.id_estado ==2 && f.value.montoA <= 0; else ford">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                              <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                          </ng-container>
+                        <ng-template #ford>
+                          <ng-container *ngIf="f.value.id_estado ==1 && f.value.montoA > 0 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                          </ng-container>
+                        </ng-template>
+                        </ng-template>
+                  </div>
+                </div>
+              </div>
+
+              <form  class="forms-sample" method="post" [formGroup]="solicitudForm" id="print-section"  >
+                <div class="row my-3">
+                  <div class="col-10 text-center">
+                    <h3>Empresa</h3>
+                    <h3>Departamento</h3>
+                      <p>
+                        Tel: +1000-000-0000
+                        <br />
+                        Direccion
+                        <br />
+                       RNC: 0000000
+                      </p>
+                      <br />
+                  </div>
+                  </div>
+                  <div class="row fact-info mt-3">
+                    <div class="col-3 ">
+                      <h5 class="fw-bold">Fecha</h5>
+
+                      <p >{{ Hoy}} </p>
+                    </div>
+                    <div class="col-3 ">
+                    <h5 class="fw-bold">Proveedor</h5>
+                    <p ></p>
+                  </div>
+                  </div>
+                  <div class="row fact-info mt-3">
+                    <div class="col-3">
+                      <h5>Solicitante</h5>
+                      <p >
+                        {{f.value.solicitante | uppercase}}
+                      </p>
+                    </div>
+                    <div class="col-3">
+                      <h5>Cedula</h5>
+                      <p >
+                        {{f.value.cedula}}
+                      </p>
+                    </div>
+                    <div class="col-3">
+                      <h5>Direccion</h5>
+                      <p>{{f.value.dire | uppercase}}</p>
+                    </div>
+                    <div class="col-3 ">
+                      <h5>Telefono</h5>
+                      <p>{{f.value.tel}}</p>
+                    </div>
+                  </div>
+                  <div class="row my-5">
+                          <div class="col-2 ">
+                            <h5 class="fw-bold" >Asunto:  </h5>
+                            <p >{{f.value.asunto | uppercase}}</p>
+                          </div>
+                     <table class="table factura">
+                      <tfoot>
+                        <tr>
+                          <th>Solicitado</th>
+                          <td> RD${{f.value.montoS}}</td>
+                          <th></th>
+                          <th>Aprovado</th>
+                          <td>RD${{f.value.montoA}}</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <div class="cond row">
+                    <div class="col-12 mt-3">
+                      <h4>Nota</h4>
+                      <p class="fst-italic">Adjunto a este documento debe estar:</p>
+                      <p class="fst-italic">
+                        *Copia de Cedula de identidad
+                        <br />
+                        *Cotizacion, Receta, factura u otro documento que sirva de evidencia
+                      </p>
+                    </div>
+                  </div>
+              </form>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+

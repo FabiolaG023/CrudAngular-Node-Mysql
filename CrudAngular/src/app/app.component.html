@@ -1,0 +1,24 @@
+<nav class="navbar"  style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{ title }}</a>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Agregar</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" [routerLink]="'/add'" routerLinkActive="router-link-active" >Solicitud</a></li>
+          <li><a class="dropdown-item"  [routerLink]="'/addP'">Proveedor</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<router-outlet> </router-outlet>
+
+
